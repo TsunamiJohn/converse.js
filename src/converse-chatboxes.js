@@ -310,8 +310,8 @@
                 },
 
                 sendMessageStanza (message) {
-                    const messageStanza = this.createMessageStanza(message);
-                    _converse.connection.send(messageStanza);
+                    const stanza = this.createMessageStanza(message);
+                    _converse.connection.send(stanza);
                     if (_converse.forward_messages) {
                         // Forward the message, so that other connected resources are also aware of it.
                         _converse.connection.send(
@@ -324,7 +324,7 @@
                                         'xmns': Strophe.NS.DELAY,
                                         'stamp': moment().format()
                                 }).up()
-                              .cnode(messageStanza.tree())
+                              .cnode(stanza.tree())
                         );
                     }
                 },
